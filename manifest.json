@@ -1,0 +1,31 @@
+{
+  "name": "Bid Response Validator for MoPub",
+  "version": "0.0.1",
+  "description": "Validate your bid response",
+  "manifest_version": 2,
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "lib/jquery-3.4.1.min.js",
+      "lib/lodash-core.js",
+      "lib/http.js",
+      "js/background.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": "img/default-logo.png",
+    "default_title": "Bid Response Validator for MoPub"
+  },
+  "icons": {
+		"16": "img/logo-16.png",
+		"48": "img/logo-48.png",
+		"128": "img/logo-128.png"
+  },
+  "permissions": [
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "*://*.mopub.com/",
+		"notifications"
+  ]
+}
