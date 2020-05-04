@@ -1,2 +1,2 @@
 # BidResponseValidatorMoPub
-Validate your bid response for MoPub
+Validate your bid response in MoPub exchange
