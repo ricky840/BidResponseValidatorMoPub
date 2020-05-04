@@ -24,7 +24,6 @@
   },
   "permissions": [
 		"tabs",
-		"notifications",
 		"storage",
 		"https://*.mopub.com/*",
 		"http://bidder.datswatsup.com/*",
