@@ -36,7 +36,7 @@ body {
 }
 
 .response_textarea {
-	min-height: 19em !important;
+	min-height: 17em !important;
 	max-height: unset !important;
 }
 
@@ -45,5 +45,4 @@ body {
 	font-size: 0.8em;
 	margin-left: 3em;	
 }
-
 

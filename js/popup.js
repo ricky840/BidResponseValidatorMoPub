@@ -96,7 +96,7 @@ async function checkBidderStatus() {
 		$("#bidder-status").html("<h5 class='ui header red'>Down</h5>");
 		messageManager.show({
 			header: "Bidder is currently not available",
-			content: "Contact jaejun@twitter.com"
+			content: "contact jaejun@twitter.com"
 		}, "negative");
 		console.log(error);
 	}
