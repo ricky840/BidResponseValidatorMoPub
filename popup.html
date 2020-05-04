@@ -7,11 +7,83 @@
 		<link rel="stylesheet" type="text/css" href="css/popup.css">
 	</head>
 	<body>
+		<div class="ui fluid one item blue menu inverted mopub-menu">
+			<a class="item" style="border-radius: 0px;">
+				<h4>
+					Bid Response Validator for MoPub
+					<span class="version"></span>
+				</h4>
+			</a>
+		</div>
+
+		<div class="ui grid container">
+			<div class="row">
+				<div class="ten wide column">
+					<h5 class="ui header">
+						<i class="twitter blue icon"></i>
+						<div class="content">Bidder Status</div>
+					</h5>
+				</div>
+				<div id="bidder-status" class="six wide column">
+					<div class="ui active inline tiny loader"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui divider"></div>
+
+		<div class="ui grid container">
+
+		<div class="row" style="padding-bottom: 0px;">
+			<div class="column">
+				<div class="ui small hidden message">
+					<i class="close icon"></i>
+					  <div class="header"></div>
+						<p></p>
+				</div>
+			</div>
+		</div>
+
+			<div class="row">
+				<div class="column">
+
+					<div class="ui form">
+						<div class="field required">
+							<label>Choose AD Format</label>
+							<div class="ui selection dropdown adformat-dropdown">
+						  	<input type="hidden" name="adformat">
+								<i class="dropdown icon"></i>
+								<div class="default text">AD Format</div>
+								<div class="menu">
+									<div class="item" data-value="banner">Banner, MREC</div>
+									<div class="item" data-value="fullscreen">Interstitial</div>
+									<div class="item" data-value="rv">Rewarded Video</div>
+									<div class="item" data-value="native">Native</div>
+									<div class="item" data-value="native_video">Native Video</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="field required">
+							<label>Enter Bid Response (JSON)</label>
+							<textarea id="bid-response" class="response_textarea" name="bid-response"></textarea>
+						</div>
+
+						<div class="ui response-submit button mopub-button-color mopub-button-radius small disabled">Submit</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
 
 		<script type="text/javascript" src="lib/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript" src="lib/semantic.min.js"></script>
 		<script type="text/javascript" src="lib/lodash.js"></script>
 		<script type="text/javascript" src="lib/http.js"></script>
+
+    <script type="text/javascript" src="js/global.js"></script>
     <script type="text/javascript" src="js/popup.js"></script>
+    <script type="text/javascript" src="js/messageManager.js"></script>
 	</body>
 </html>

@@ -14,6 +14,7 @@
   },
   "browser_action": {
     "default_icon": "img/default-logo.png",
+		"default_popup": "popup.html",
     "default_title": "Bid Response Validator for MoPub"
   },
   "icons": {
@@ -22,10 +23,11 @@
 		"128": "img/logo-128.png"
   },
   "permissions": [
-    "storage",
-    "webRequest",
-    "webRequestBlocking",
-    "*://*.mopub.com/",
-		"notifications"
+		"tabs",
+		"notifications",
+		"storage",
+		"https://*.mopub.com/*",
+		"http://bidder.datswatsup.com/*",
+		"https://bidder.datswatsup.com/*"
   ]
 }
