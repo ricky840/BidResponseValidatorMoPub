@@ -36,7 +36,7 @@ body {
 }
 
 .response_textarea {
-	min-height: 17em !important;
+	min-height: 15em !important;
 	max-height: unset !important;
 }
 
@@ -44,5 +44,14 @@ body {
 	font-weight: 200;
 	font-size: 0.8em;
 	margin-left: 3em;	
+}
+
+.info-segment {
+	padding-top: 0.5em !important;
+	padding-bottom: 0.5em !important;
+}
+
+.info-segment .title {
+	font-weight: bold !important;
 }
 

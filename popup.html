@@ -33,23 +33,76 @@
 		<div class="ui divider"></div>
 
 		<div class="ui grid container">
-
-		<div class="row" style="padding-bottom: 0px;">
-			<div class="column">
-				<div class="ui small hidden message">
-					<i class="close icon"></i>
-					  <div class="header"></div>
-						<p></p>
+			<div class="row" style="padding-bottom: 0px; padding-top: 0px;">
+				<div class="column">
+					<div class="ui small hidden message" style="margin-top: 1em;">
+						<i class="close icon"></i>
+							<div class="header"></div>
+							<p></p>
+					</div>
 				</div>
 			</div>
-		</div>
+
+			<div class="row" style="padding-bottom: 0px;">
+				<div class="column">
+					<div class="ui basic secondary segment info-segment">
+						<div class="ui accordion">
+							<div class="title">
+								<i class="dropdown icon"></i>
+								Ad Unit Keys
+							</div>
+							<div class="content">
+								<div class="ui list">
+									<div class="item">
+										<div class="content">
+											<a class="header">Banner / MREC</a>
+											<div class="description banner-adunit-key"></div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="content">
+											<a class="header">Full Screen</a>
+											<div class="description fullscreen-adunit-key"></div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="content">
+											<a class="header">Rewarded Video</a>
+											<div class="description rv-adunit-key"></div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="content">
+											<a class="header">Native</a>
+											<div class="description native-adunit-key"></div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="content">
+											<a class="header">Native Video</a>
+											<div class="description native-video-adunit-key"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="title">
+								<i class="dropdown icon"></i>
+								Your Device Id
+							</div>
+							<div class="content">
+								<p class="device-id"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div class="row">
 				<div class="column">
 
 					<div class="ui form">
 						<div class="field required">
-							<label>Choose AD Format</label>
+							<label>Choose Ad Format</label>
 							<div class="ui selection dropdown adformat-dropdown">
 						  	<input type="hidden" name="adformat">
 								<i class="dropdown icon"></i>
@@ -75,7 +128,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<script type="text/javascript" src="lib/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript" src="lib/semantic.min.js"></script>

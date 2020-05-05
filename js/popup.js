@@ -4,6 +4,9 @@ $(document).ready(function() {
 
 	init();
 
+	// Init accordion
+	$('.ui.accordion').accordion();
+
 	// Validate JSON input
 	$("#bid-response").keyup(function(event) {
 		let inputJSON = $(this).val().trim();
@@ -54,6 +57,14 @@ async function init() {
 	}
 	initAdUnitUrls();
 	checkBidderStatus();
+
+	// Update Info Segment
+	$(".device-id").html(UserId);
+	$(".banner-adunit-key").html(ADUNIT_KEYS.banner);
+	$(".fullscreen-adunit-key").html(ADUNIT_KEYS.fullscreen);
+	$(".rv-adunit-key").html(ADUNIT_KEYS.rv);
+	$(".native-adunit-key").html(ADUNIT_KEYS.native);
+	$(".native-video-adunit-key").html(ADUNIT_KEYS.native_video);
 }
 
 function initAdUnitUrls() {
