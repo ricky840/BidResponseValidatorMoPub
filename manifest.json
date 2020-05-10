@@ -1,6 +1,6 @@
 {
   "name": "Bid Response Validator for MoPub",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Validate your bid response",
   "manifest_version": 2,
   "background": {

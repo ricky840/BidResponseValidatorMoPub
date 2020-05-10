@@ -21,9 +21,10 @@ $(document).ready(function() {
 	$(".response-submit").click(function(event) {
 		let values = $(".ui.form").form('get values');
 		if (!validateInput(values)) return false;
-
+    
 		// Button loader
-		$(this).addClass("loading");
+    let submitBtnObj = $(this);
+		submitBtnObj.addClass("loading");
 
 		let adReqUrl = getAdRequestUrl(values.adformat);
 		let bidResponse = values["bid-response"];
@@ -34,7 +35,7 @@ $(document).ready(function() {
 					header: "Upload Failed",
 					content: `Entered bid response was not uploaded - ${uploadResult.statusCode}`
 				}, "negative");
-				$(this).removeClass("loading");
+				submitBtnObj.removeClass("loading");
 				return false;
 			}
 			makeAdRequest(adReqUrl);
@@ -133,6 +134,13 @@ async function makeAdRequest(adReqUrl) {
 			}, "negative");
 		}
 	} catch (error) {
+		messageManager.show({
+			header: "Error making ad request",
+			content: "Make sure you are connected to the internet"
+		}, "negative");
+
+		// remove loader
+		$(".ui.response-submit").removeClass("loading");
 		console.log(error);
 	}
 }
