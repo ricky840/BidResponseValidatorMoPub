@@ -56,10 +56,32 @@ function randomString(len) {
   return str;
 }
 
+/**
+ *  Override User-Agent
+ *  since somewhere around 2021 April, when GET ad request is deprecated
+ *  the ad server started to validate the user-agent. It should always be mobile
+ *  otherwise it won't run the auction
+ **/
 
+chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
+  // Only change User-Agent if URL has ?bid_response_validator=1
+  const url = details.url;
+  if (!url.includes("bid_response_validator")) return;
 
-
-
+  let headers = details.requestHeaders;
+  headers.push({
+    name: "User-Agent",
+    value: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+  });
+    return { "requestHeaders": headers };
+  },
+  {
+    urls: [ 
+      "https://ads.mopub.com/m/ad*",
+    ]
+  },
+  ["requestHeaders", "extraHeaders", "blocking"]
+);
 
 
 

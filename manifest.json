@@ -1,10 +1,10 @@
 {
   "name": "Bid Response Validator for MoPub",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Validate your bid response",
   "manifest_version": 2,
   "background": {
-    "persistent": false,
+    "persistent": true,
     "scripts": [
       "lib/jquery-3.4.1.min.js",
       "lib/lodash-core.js",
@@ -25,6 +25,8 @@
   "permissions": [
 		"tabs",
 		"storage",
+    "webRequest",
+    "webRequestBlocking",
 		"https://*.mopub.com/*",
 		"http://bidder.datswatsup.com/*",
 		"https://bidder.datswatsup.com/*"

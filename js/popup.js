@@ -26,7 +26,7 @@ $(document).ready(function() {
     let submitBtnObj = $(this);
 		submitBtnObj.addClass("loading");
 
-		let adReqUrl = getAdRequestUrl(values.adformat);
+		let adReqBody = getAdRequestBody(values.adformat);
 		let bidResponse = values["bid-response"];
 
 		let verifyUpload = function(uploadResult) {
@@ -38,7 +38,7 @@ $(document).ready(function() {
 				submitBtnObj.removeClass("loading");
 				return false;
 			}
-			makeAdRequest(adReqUrl);
+			makeAdRequest(adReqBody);
 		};
 
 		// Upload bid response
@@ -62,7 +62,9 @@ async function init() {
 	// Update Info Segment
 	$(".device-id").html(UserId);
 	$(".banner-adunit-key").html(ADUNIT_KEYS.banner);
+	$(".mrec-adunit-key").html(ADUNIT_KEYS.mrec);
 	$(".fullscreen-adunit-key").html(ADUNIT_KEYS.fullscreen);
+	$(".rewarded-adunit-key").html(ADUNIT_KEYS.rewarded);
 	$(".rv-adunit-key").html(ADUNIT_KEYS.rv);
 	$(".native-adunit-key").html(ADUNIT_KEYS.native);
 	$(".native-video-adunit-key").html(ADUNIT_KEYS.native_video);
@@ -70,7 +72,11 @@ async function init() {
 
 function initAdUnitUrls() {
 	for (let type in ADUNIT_KEYS) {
-		AdRequestUrls[type] = DEFAULT_AD_REQUEST_URL + `&id=${ADUNIT_KEYS[type]}&udid=ifa:${UserId}`;
+		let body = jQuery.extend(true, {}, AdRequestBody);
+		body["ifa"] = UserId;
+		body["id"] = ADUNIT_KEYS[type]; 
+		body["adunit"] = ADUNIT_KEYS[type];
+		AdRequestBodys[type] = body;
 	}
 }
 
@@ -114,10 +120,19 @@ async function checkBidderStatus() {
 	}
 }
 
-async function makeAdRequest(adReqUrl) {
-	let request = {	url: adReqUrl };
+async function makeAdRequest(adReqBody) {
+	let headers = {	
+		"Content-Type": "application/json; charset=utf-8"
+	};
+
+	let request = {	
+		"url": DEFAULT_AD_REQUEST_URL,
+		"data": adReqBody,
+		"headers": headers
+	};
+
 	try {
-		let result = await http.getRequest(request);
+		let result = await http.postRequest(request);
 		let link = findMPXVerboseLink(result.responseText);
 		console.log(link);
 
@@ -127,6 +142,8 @@ async function makeAdRequest(adReqUrl) {
 		// See if link is a valid URL, if it is delete existing bid response and open tab
 		if (!_.isEmpty(link)) {
 			chrome.tabs.create({ url: link });
+      // console.log(request.url);
+      // console.log(link);
 		} else {
 			messageManager.show({
 				header: "MPX Verbose Link is not available",
@@ -165,29 +182,35 @@ async function uploadBidResponse(bidResponseText, callback) {
 	}
 }
 
-function getAdRequestUrl(adFormat) {
-	let url;
+function getAdRequestBody(adFormat) {
+	let body;
 	switch(adFormat) {
 		case "banner":
-			url = AdRequestUrls.banner;	
+			body = AdRequestBodys.banner;	
+			break;
+		case "mrec":
+			body = AdRequestBodys.mrec;	
 			break;
 		case "fullscreen":
-			url = AdRequestUrls.fullscreen;	
+			body = AdRequestBodys.fullscreen;	
+			break;
+		case "rewarded":
+			body = AdRequestBodys.rewarded;	
 			break;
 		case "rv":
-			url = AdRequestUrls.rv;	
+			body = AdRequestBodys.rv;	
 			break;
 		case "native":
-			url = AdRequestUrls.native;	
+			body = AdRequestBodys.native;	
 			break;
 		case "native_video":
-			url = AdRequestUrls.native_video;	
+			body = AdRequestBodys.native_video;	
 			break;
 		default:
-			url = "";
+			body = "";
 			break;
 	}
-	return url;
+	return JSON.stringify(body);
 }
 
 function validateInput(values) {
